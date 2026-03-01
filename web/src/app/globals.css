@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--dark-bg);
+  --color-foreground: #ffffff;
+  
+  --color-coral: #FF6B6B;
+  --color-magenta: #D946EF;
+  --color-card: #0F0F16;
+  --color-card-white: #F3F3F3;
+
+  --font-display: var(--font-outfit), sans-serif;
+  --font-sans: var(--font-inter), sans-serif;
+  --font-epilogue: var(--font-epilogue), sans-serif;
+}
+
+:root {
+  --dark-bg: #05050A;
+  --coral-gradient: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  --background: var(--dark-bg);
+  --foreground: #ffffff;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .bg-coral-gradient {
+    background: var(--coral-gradient);
+  }
+  
+  .glass-pill {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-nav {
+    background: rgba(5, 5, 10, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .glass-card {
+    background: rgba(15, 15, 22, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .text-coral {
+    color: var(--color-coral);
+  }
+
+  .text-magenta {
+    color: var(--color-magenta);
+  }
+  
+  .font-thin-display {
+    font-weight: 100;
+  }
+}
