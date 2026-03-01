@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agencis Bento Grid Visual Sync</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --bg-dark: #02040a;
+            --bg-navy: #050a14;
+            --accent-magenta: #e82c89;
+            --accent-coral: #ff6b6b;
+            --accent-gradient: linear-gradient(135deg, var(--accent-magenta) 0%, var(--accent-coral) 100%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.06);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(20, 30, 60, 0.4) 0%, rgba(2, 4, 10, 0) 60%),
+                linear-gradient(180deg, var(--bg-navy) 0%, var(--bg-dark) 100%);
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            position: relative;
+        }body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 50;
+        }
+        .agencis-headline {
+            font-weight: 200;letter-spacing: -0.02em;}
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+            overflow: hidden;
+        }.glass-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.04), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+        .glass-card:hover::after {
+            opacity: 1;
+        }
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+        }
+        .white-card {
+            background: #ffffff;
+            color: #02040a;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .white-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 35px 60px -15px rgba(255, 255, 255, 0.15);
+        }
+        .highlight-text {
+            color: var(--accent-coral);
+            font-weight: 400;
+        }
+        .highlight-text-magenta {
+            color: var(--accent-magenta);
+        }
+        .btn-circle-gradient {
+            background: var(--accent-gradient);
+            box-shadow: 0 4px 20px rgba(232, 44, 137, 0.4);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(6, 180px);gap: 24px;
+        }
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+                gap: 20px;
+            }
+        }
+        @media (max-width: 640px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen p-6 md:p-12 lg:p-10 selection:bg-[#e82c89] selection:text-white">
+<main class="w-full max-w-[1440px] mx-auto relative z-10">
+<div class="bento-grid">
+<div class="lg:col-span-2 lg:row-span-2 flex items-end p-8 md:p-10">
+<h1 class="text-5xl md:text-7xl lg:text-8xl leading-[0.9] agencis-headline text-white">
+                We don't<br/>sell a set of<br/>services.
+            </h1>
+</div>
+<div class="lg:col-span-2 lg:row-span-1 glass-card flex items-center px-10">
+<h2 class="text-3xl md:text-5xl agencis-headline leading-tight text-gray-200">
+                We choose <span class="highlight-text italic">the tools for your</span>
+</h2>
+</div>
+<article class="lg:col-span-2 lg:row-span-3 white-card p-10 md:p-14 flex flex-col justify-between group overflow-hidden relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-gray-100 to-transparent rounded-bl-full opacity-50 pointer-events-none"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-12">
+<span class="text-[10px] font-bold tracking-[0.2em] text-[#e82c89] uppercase bg-[#e82c89]/10 px-3 py-1 rounded-full">Service 01</span>
+<span class="material-symbols-outlined text-4xl text-[#e82c89] font-light">terminal</span>
+</div>
+<h3 class="text-5xl md:text-6xl font-light leading-tight mb-6 text-black tracking-tight">
+                    Website<br/>Development
+                </h3>
+<p class="text-xl text-gray-600 font-light border-l-2 border-[#e82c89] pl-4">Sites that lead to actions</p>
+</div>
+<div class="mt-12 relative">
+<p class="text-base leading-relaxed text-gray-500 max-w-lg font-light">
+                    We create websites from scratch – structure, text, design, layout and basic SEO. From landing pages and portfolios to corporate sites, multi-page projects, blogs and e-commerce.
+                </p>
+<div class="mt-8 flex items-center gap-2 group/link cursor-pointer">
+<span class="text-sm font-medium text-[#e82c89]">View Projects</span>
+<span class="material-symbols-outlined text-[#e82c89] text-sm transition-transform group-hover/link:translate-x-1">arrow_forward</span>
+</div>
+</div>
+</article>
+<div class="lg:col-span-1 lg:row-span-1 glass-card flex items-center justify-center text-center p-6">
+<span class="highlight-text-magenta text-4xl md:text-5xl font-light italic tracking-tight">specific goals.</span>
+</div>
+<article class="lg:col-span-1 lg:row-span-2 glass-card p-8 flex flex-col justify-end relative group">
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="mb-auto relative z-10">
+<span class="material-symbols-outlined text-3xl text-white/80 p-3 rounded-full bg-white/5 border border-white/10">auto_awesome</span>
+</div>
+<h3 class="text-2xl font-light text-white mb-2 relative z-10">
+                Branding &amp;<br/>Identity
+            </h3>
+<p class="text-xs text-gray-400 font-light tracking-wide uppercase relative z-10">Meaning Visualized</p>
+</article>
+<article class="lg:col-span-2 lg:row-span-1 glass-card p-8 flex items-center justify-between gap-6 group">
+<div class="flex-1">
+<h3 class="text-2xl font-light text-white mb-1 group-hover:text-[#ff6b6b] transition-colors">
+                    Digital Marketing
+                </h3>
+<div class="flex gap-2 mt-2">
+<span class="text-[10px] uppercase tracking-wider text-gray-400 border border-white/10 px-2 py-1 rounded">SMM</span>
+<span class="text-[10px] uppercase tracking-wider text-gray-400 border border-white/10 px-2 py-1 rounded">Ads</span>
+<span class="text-[10px] uppercase tracking-wider text-gray-400 border border-white/10 px-2 py-1 rounded">Email</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#e82c89] to-[#ff6b6b] flex items-center justify-center shadow-lg shadow-pink-900/20">
+<span class="material-symbols-outlined text-white text-xl">trending_up</span>
+</div>
+</article>
+<div class="lg:col-span-2 lg:row-span-2 glass-card p-10 md:p-12 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -top-20 -right-20 w-64 h-64 bg-[#e82c89] rounded-full filter blur-[80px] opacity-20"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-6 text-white text-2xl font-light tracking-wide">
+<span class="material-symbols-outlined text-3xl text-[#ff6b6b]">wifi_tethering</span>
+<span class="font-normal">Agencis</span>
+</div>
+<p class="text-gray-300 text-lg leading-relaxed font-light max-w-xl">
+                    We don't believe in <span class="text-white font-normal">one-size-fits-all solutions.</span> You bring the request — we bring the mix of tools that <span class="text-[#ff6b6b] italic font-normal">will actually work.</span>
+</p>
+</div>
+<div class="flex items-center justify-between mt-8 relative z-10">
+<a class="inline-flex items-center gap-0 group cursor-pointer no-underline bg-[#0a0a0a] rounded-full p-1 pr-6 border border-white/10 hover:border-white/30 transition-all shadow-lg" href="#">
+<div class="w-10 h-10 rounded-full btn-circle-gradient flex items-center justify-center mr-4 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-white text-sm">arrow_forward</span>
+</div>
+<span class="text-sm font-medium text-white tracking-wide">
+                        Find the right service
+                    </span>
+</a>
+<p class="hidden lg:block text-[9px] text-gray-500 uppercase tracking-[0.2em] text-right">
+                    Tailored Strategy<br/>Est. 2024
+                </p>
+</div>
+</div>
+<article class="lg:col-span-1 lg:row-span-2 glass-card p-8 flex flex-col justify-center text-center group">
+<div class="mb-6 mx-auto w-14 h-14 rounded-full border border-white/10 bg-white/5 flex items-center justify-center group-hover:border-[#e82c89]/50 transition-colors">
+<span class="material-symbols-outlined text-2xl text-gray-300 group-hover:text-white transition-colors">edit_note</span>
+</div>
+<h3 class="text-2xl font-light text-white mb-3 leading-tight">
+                Creative &amp;<br/>Copywriting
+            </h3>
+<p class="text-xs text-gray-400 font-light leading-relaxed">Texts and ideas that convert interest into business.</p>
+</article>
+<div class="lg:col-span-1 lg:row-span-1 flex items-center justify-center px-6">
+<p class="text-xs text-gray-500 text-center font-light leading-relaxed max-w-[150px]">
+                You don't need everything — <span class="text-gray-300 border-b border-[#e82c89]">just the right things.</span>
+</p>
+</div>
+<article class="lg:col-span-1 lg:row-span-1 glass-card p-6 flex items-center gap-5 hover:bg-white/5 transition-colors">
+<div class="w-10 h-10 flex-shrink-0 rounded-full bg-gradient-to-br from-gray-800 to-black border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#ff6b6b] text-lg">rocket_launch</span>
+</div>
+<div>
+<h3 class="text-lg font-light text-white">Launch</h3>
+<p class="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Full Cycle</p>
+</div>
+</article>
+</div>
+<div class="h-24"></div>
+</main>
+<script>
+    // Add simple mouse tracking for glass cards subtle glow effect
+    document.querySelectorAll('.glass-card').forEach(card => {
+        card.onmousemove = e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        }
+    });
+</script>
+
+</body></html>

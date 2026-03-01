@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agencis - Digital Agency</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Outfit:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#210611",
+                        "background-light": "#f8f6f7",
+                        "background-dark": "#201218",
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --dark-bg: #05050A;
+            --card-bg: #0F0F16;
+            --coral-gradient: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            --coral-text: #FF6B6B;
+            --magenta-text: #D946EF;
+            --card-white: #F3F3F3;
+        }
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+        .text-coral {
+            color: var(--coral-text);
+        }
+        .text-magenta {
+            color: var(--magenta-text);
+        }
+        .bg-coral-gradient {
+            background: var(--coral-gradient);
+        }
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-nav {
+            background: rgba(5, 5, 10, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .glass-card {
+             background: rgba(15, 15, 22, 0.6);
+             backdrop-filter: blur(12px);
+             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-input {
+            background: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0;
+            padding-left: 0;
+        }
+        .glass-input:focus {
+             border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+             box-shadow: none;
+             background: transparent;
+        }
+        .font-thin-display {
+            font-weight: 100;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen bg-background-light dark:bg-background-dark">
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-purple-900/20 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-pink-900/20 rounded-full blur-[120px]"></div>
+</div>
+<header class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 w-full">
+<div class="glass-nav rounded-full px-2 py-2 flex items-center justify-between w-full max-w-5xl">
+<div class="pl-6 flex items-center">
+<a class="text-2xl font-display font-semibold tracking-tight text-white hover:opacity-80 transition-opacity" href="#">
+                Agencis
+            </a>
+</div>
+<nav class="hidden md:flex items-center gap-1 mx-4">
+<a class="px-4 py-2 text-white hover:bg-white/10 rounded-full text-sm font-medium transition-all" href="#">Home</a>
+<a class="px-4 py-2 text-white hover:bg-white/10 rounded-full text-sm font-medium transition-all" href="#">About us</a>
+<a class="px-4 py-2 text-white hover:bg-white/10 rounded-full text-sm font-medium transition-all" href="#">Services</a>
+<a class="px-4 py-2 text-white hover:bg-white/10 rounded-full text-sm font-medium transition-all" href="#">Cases</a>
+<a class="px-4 py-2 text-white hover:bg-white/10 rounded-full text-sm font-medium transition-all" href="#">Reviews</a>
+<a class="px-4 py-2 text-white hover:bg-white/10 rounded-full text-sm font-medium transition-all" href="#">FAQ</a>
+</nav>
+<div class="pr-2">
+<button class="bg-coral-gradient px-6 py-2.5 rounded-full text-white text-sm font-medium hover:opacity-90 transition-opacity shadow-[0_4px_14px_rgba(255,107,107,0.4)]">
+                Contact Us
+            </button>
+</div>
+</div>
+</header>
+<main class="relative z-10 w-full pt-32 pb-0 flex flex-col min-h-screen justify-between">
+<section class="max-w-[1440px] mx-auto px-6 mb-20">
+<div class="col-span-12 lg:col-span-5 relative z-10 flex flex-col justify-start pt-10">
+<h1 class="font-display font-thin-display text-7xl lg:text-[5.5rem] leading-[0.9] text-white tracking-tighter mb-4">
+                Digital that<br/>
+                moves deeper <span class="align-top text-2xl font-light text-gray-400">+</span>
+</h1>
+<div class="text-xs text-gray-400 uppercase tracking-widest mb-10 pl-1 border-l border-gray-700 ml-1">
+                From idea<br/>to launch
+            </div>
+<div class="flex items-center gap-4 mb-20 w-fit">
+<div class="glass-pill rounded-full pl-6 pr-1 py-1 flex items-center gap-4">
+<span class="text-sm font-light text-white">Get a free consultation</span>
+<button class="w-10 h-10 rounded-full bg-coral-gradient flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<p class="text-[10px] text-gray-400 max-w-[120px] leading-tight">
+                     Leave a request right now and get a free 30-minute consultation.
+                 </p>
+</div>
+</div>
+</section>
+<div class="relative w-full bg-gradient-to-b from-[#05050A] via-[#0a0a1a] to-black text-white rounded-t-[3rem] overflow-hidden mt-10">
+<section class="max-w-[1440px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+<div class="relative">
+<h2 class="font-display font-thin-display text-6xl lg:text-[7rem] leading-[0.9] text-white tracking-tighter">
+                        Ready to<br/>
+                        dive deeper? <span class="align-top text-4xl lg:text-6xl text-gray-600 font-light">+</span>
+</h2>
+<div class="absolute -left-12 top-0 w-64 h-64 bg-purple-600/20 blur-[80px] rounded-full pointer-events-none"></div>
+</div>
+<div class="flex flex-col items-start lg:pl-10 relative">
+<div class="absolute right-0 top-[-20%] w-64 h-64 bg-pink-600/10 blur-[80px] rounded-full pointer-events-none"></div>
+<div class="mb-12 relative z-10">
+<button class="group relative bg-coral-gradient rounded-full pl-8 pr-2 py-2 flex items-center gap-6 hover:shadow-[0_0_40px_rgba(255,107,107,0.4)] transition-all duration-300 transform hover:scale-105 mb-6">
+<span class="text-white text-xl font-medium tracking-wide">Start your project</span>
+<div class="w-14 h-14 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-black/40 transition-colors border border-white/10">
+<span class="material-symbols-outlined text-white text-2xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</button>
+<p class="text-gray-400 text-sm font-light tracking-wide max-w-sm pl-2">
+                            Join 120+ successful brands and start your digital transformation today. We help you scale faster.
+                        </p>
+</div>
+<div class="glass-card p-6 rounded-2xl border border-white/10 max-w-xs w-full relative overflow-hidden group hover:border-white/20 transition-all duration-500">
+<div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent rounded-bl-full pointer-events-none"></div>
+<div class="flex items-center justify-between mb-4">
+<span class="text-sm text-gray-400 font-light uppercase tracking-wider">Client Satisfaction</span>
+<span class="material-symbols-outlined text-coral">favorite</span>
+</div>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-5xl font-display font-light text-white">98%</span>
+<span class="text-sm text-green-400 font-medium">+2.4%</span>
+</div>
+<div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+<div class="bg-coral-gradient h-full w-[98%] rounded-full"></div>
+</div>
+<div class="mt-4 flex -space-x-2">
+<img alt="Client" class="w-8 h-8 rounded-full border border-black object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbjqMxuryGEfAL_EBSXw763BeGhb1K6xtDxpbaHwGV_YkXzCOp9tcko8DA_1AUqCMhQrl28jo5kWGcjHY5SL1eqq9pkCLEkvCt6u0CZXBnsSXZF4gzEOYe9Nm997yVhtGM8b-iRbfWRHVSYvJD1LGT2kI2dEsRSeTn11Rc6AMlJgJiBhEmNmdhxSekyqSHNhErBqy79c1nHkvtxalMelIRUP5ylBo08CnrhuHoWrszJrEmS87TylPp2AGN-bQrJFmWuxim3G9kfY24"/>
+<img alt="Client" class="w-8 h-8 rounded-full border border-black object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD0hiYGrolwfPG3im3cw_Ikwm6GRwjNISLSGHGwFRZ6nhMnPjYMzDW5GEBZqPlrHM3j-Jj-nJUMPxDDBlcSLGMnNcut3tdnKkmkJXGQw9A-bk3aBaYopQ92ggreKLKD642jSJoTpEuJ-yKRNyaiLum-byMcjOZurisVkeEY6nZDTzIOwxr8ptYwQmhOQIOf11iKmx59-WlwyR3FibSstt1xt5AlZFfa1Wt5HVNhZ_C5Fhq8zS3cUBf-2MRfLmZVnLbP-JqbbuSBk8D"/>
+<img alt="Client" class="w-8 h-8 rounded-full border border-black object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXeZ_aYzHCMuR1dc0OnKL5G2Pd5ZcbR69XIKEoVXcSIecq1twgKjqNB9vVtMmRw7bpfmNMLQ0dJQeKsaARdadxeI3SCrWd4tZcNqKA3WbFW91FwiuwLhAu8ml4P3wzBgphlfB0m1zqORKtF-D7WmDP_Yrhukjd41Msu-XtNLNIZEEACt4lJsFQN9gZfL1al_kZ3DBbFsdZJfgrx90A-JW_OnThoU0wJ9e1ci0k8QXSMdSpmmOH6llJuBM0g-XylnHxPN5LWsAncCJP"/>
+<div class="w-8 h-8 rounded-full border border-black bg-white/10 flex items-center justify-center text-[10px] text-white backdrop-blur-sm">
+                                +1k
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="relative z-10 w-full max-w-[1440px] mx-auto border-t border-white/5 pt-16 pb-12 px-6 lg:px-12 bg-gradient-to-t from-black to-transparent">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+<div class="md:col-span-12 lg:col-span-4 flex flex-col justify-between">
+<div>
+<a class="text-4xl font-display font-bold text-white mb-6 block tracking-tight" href="#">Agencis</a>
+<p class="text-gray-400 text-sm font-light leading-relaxed max-w-xs mb-8">
+                            Crafting digital experiences that merge art, technology, and strategy. We build for the future.
+                        </p>
+</div>
+</div>
+<div class="md:col-span-4 lg:col-span-2">
+<h4 class="text-white font-display font-medium text-lg mb-6">Company</h4>
+<ul class="space-y-4">
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">Home</a></li>
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">About Agency</a></li>
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">Our Services</a></li>
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">Case Studies</a></li>
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">Careers</a></li>
+</ul>
+</div>
+<div class="md:col-span-4 lg:col-span-2">
+<h4 class="text-white font-display font-medium text-lg mb-6">Services</h4>
+<ul class="space-y-4">
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">Web Design</a></li>
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">Development</a></li>
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">SEO Strategy</a></li>
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">Branding</a></li>
+</ul>
+</div>
+<div class="md:col-span-4 lg:col-span-4 flex flex-col">
+<h4 class="text-white font-display font-medium text-lg mb-6">Support &amp; Updates</h4>
+<ul class="space-y-4 mb-8">
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">Help Center</a></li>
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">Terms &amp; Conditions</a></li>
+<li><a class="text-gray-400 hover:text-white transition-colors text-sm font-light" href="#">Privacy Policy</a></li>
+</ul>
+<form class="mt-4">
+<label class="block text-xs text-gray-500 uppercase tracking-widest mb-2">Subscribe to newsletter</label>
+<div class="flex items-center relative">
+<input class="w-full glass-input py-3 pr-12 text-white placeholder-gray-600 focus:outline-none transition-colors text-sm font-light bg-transparent" placeholder="Email address" type="email"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-white hover:text-coral transition-colors" type="submit">
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex gap-4 order-2 md:order-1">
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all duration-300 group" href="#">
+<span class="font-display font-bold text-xs">Ig</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all duration-300 group" href="#">
+<span class="font-display font-bold text-xs">Li</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all duration-300 group" href="#">
+<span class="font-display font-bold text-xs">Tw</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all duration-300 group" href="#">
+<span class="font-display font-bold text-xs">Be</span>
+</a>
+</div>
+<div class="text-xs font-light text-gray-600 flex flex-col md:flex-row gap-4 md:gap-8 items-center order-1 md:order-2">
+<p>© 2024 Agencis Studio.</p>
+<p class="hidden md:block">All rights reserved.</p>
+<p>Made with passion.</p>
+</div>
+</div>
+</footer>
+</div>
+</main>
+
+</body></html>

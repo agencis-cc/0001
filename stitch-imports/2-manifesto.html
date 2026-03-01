@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agencis - Theatrical Manifesto</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@100;200;300;400;500;600&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --bg-dark: #000000;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-bg-hover: rgba(255, 255, 255, 0.05);
+            --accent-coral: #FF7E7E;
+            --accent-magenta: #D946EF;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .font-display {
+            font-family: 'Epilogue', sans-serif;
+        }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+        }
+        .glass-button {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        .glow-spot {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+        .text-glow-coral {
+            color: var(--accent-coral);
+            text-shadow: 0 0 30px rgba(255, 126, 126, 0.5);
+        }
+        .text-glow-magenta {
+            color: var(--accent-magenta);
+            text-shadow: 0 0 30px rgba(217, 70, 239, 0.5);
+        }
+        .manifesto-text {
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+        }
+        .circular-signature {
+            shape-outside: circle(50%);
+            clip-path: circle(50%);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-fuchsia-500 selection:text-white min-h-screen flex flex-col">
+<div class="fixed inset-0 overflow-hidden pointer-events-none">
+<div class="glow-spot w-[800px] h-[800px] bg-purple-900/30 -top-20 -left-20"></div>
+<div class="glow-spot w-[600px] h-[600px] bg-fuchsia-900/20 bottom-0 right-0"></div>
+<div class="glow-spot w-[400px] h-[400px] bg-rose-900/20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+</div>
+<main class="relative flex-grow flex items-center justify-center px-6 lg:px-20 py-24">
+<div class="max-w-[1400px] w-full mx-auto relative">
+<h1 class="manifesto-text font-display font-thin text-[clamp(2.5rem,8vw,9rem)] text-white/90 text-left">
+            At Agencis Studio, we bring together 
+            <span class="text-glow-coral font-light">designers</span>, 
+            <span class="text-glow-magenta font-light">strategists</span>, 
+            and makers to craft 
+            <span class="relative inline-block">
+<div class="float-right ml-8 mt-4 md:mt-8 w-32 h-32 md:w-64 md:h-64 circular-signature glass-card p-1.5 rotate-3 hover:rotate-0 transition-transform duration-700 overflow-hidden hidden sm:block">
+<img alt="Agencis Team" class="w-full h-full object-cover scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXk0Jg7emcNWEGqyw2q7xMvrut7JSTaWEJZckNDIkq3I6KhF4pvlnNf-RePUEAvopoFAZYTM6PCikZNFqZVx1AZ4_cPuQitsaI5LDgv4dkgjwVk9Cq6jCy55jFMoUOrIgmhYWIS4f5IbHLK6x2Qfxke9JCQTWEr_7mQyQay6fY9uhs-leGza10w3X6437DzAsE8ubAzBE3asaGE1BBkqEAeOVK46ZcBf_YBfrjOk-3izKsQgdXIRBDXE398rH8RPIzDeHPE_bsBJE1"/>
+</div>
+                bold
+            </span>, 
+            thoughtful digital experiences made with 
+            <span class="text-white">care</span> and <span class="text-white">curiosity.</span>
+</h1>
+</div>
+</main>
+<aside class="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-20 opacity-30 hover:opacity-100 transition-opacity duration-500">
+<button aria-label="Twitter/X" class="glass-button w-10 h-10 rounded-full flex items-center justify-center group">
+<span class="text-sm group-hover:text-white text-neutral-400 transition-colors font-light">𝕏</span>
+</button>
+<button aria-label="Dribbble" class="glass-button w-10 h-10 rounded-full flex items-center justify-center group">
+<span class="material-symbols-outlined text-sm text-neutral-400 group-hover:text-[#EA4C89] transition-colors font-light">sports_basketball</span>
+</button>
+<button aria-label="LinkedIn" class="glass-button w-10 h-10 rounded-full flex items-center justify-center group">
+<span class="text-xs font-bold text-neutral-400 group-hover:text-[#0A66C2] transition-colors">in</span>
+</button>
+</aside>
+<footer class="relative w-full px-8 pb-12 mt-auto">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-8 border-t border-white/5 pt-8 opacity-40 hover:opacity-100 transition-opacity duration-500">
+<div class="flex items-center gap-12">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-medium mb-1">Impact</span>
+<span class="text-xl font-light text-white">400+ Partners</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-medium mb-1">Reach</span>
+<span class="text-xl font-light text-white">12 Countries</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-medium mb-1">Launches</span>
+<span class="text-xl font-light text-white">230+ Live</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-3">
+<img alt="" class="w-8 h-8 rounded-full border border-black object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-7ZCuFePAf1zsRbtoLXaFg7afE1gOmhZVbWUr8bx_oYSrkDdB3CWvG212QawYb8hLt0KHg4neGkeRnjONpmdNWACsrAGoM1ipAsPw6fip8_X5VUlqzKRq3xTlQhsEaWrhPsYNBmbOPW7etAnv9PuJGaX4xZPwDMae6NcpWGls3pDSVSlwKzD809Rz-eP7iKS0siMSeAnfdvxSRMtFni0itYjJHrZMjme_g_ipNGoN46j_kIKnFkuK9gkCDWmjFI5ljfwdkt62iYGh"/>
+<img alt="" class="w-8 h-8 rounded-full border border-black object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfNcMn8Uto7YsOsjuLils9w46N8DNZwroZF7DksiOIos90hQ6sOG9Zmcs4JOpobeAQLARXKzTZ4nqCbAXLCN2Cawb_9zXHI9JU_g3mMJaiD9CnZ5SdKlQiuJ-2A6IB06BbiYwJJGCob8vr9qGUCF_Mx-6g3w9JDbM-QHxwT5ZxWeqw2ez4HIp4hriii54xwrp-0u9pwEyjXeYUQocQp_UZvtF9_ucr9CWuyfSAFMdQFJzZzKUcuOSkpK1skk3zdL6KoHraEWZ7n-HT"/>
+<img alt="" class="w-8 h-8 rounded-full border border-black object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV71GLyM8gJwzOKsIcO9wkzkUDGaGKzQnR9fhfojCg3VkdTuNHTQBhXKRSYYX65baCF4wmpHdUFG2GVf6YGrWN_fHloHnwdQonwfoLJFMof5L9WXe363J8_n4z3jvpKIqSsaTw05RaclRfpueU1dQvMzreW2Hrsh4QiZauTS3czWFw0-HQ_wlIZtpv6kwwgImwNVDjoIggl2EDPSA3g-D-ltap-Gd-phMJlBVWXizSzCwmmMgyYSGis0apMjNkrAyEdsBI_Sbg1vV4"/>
+<div class="w-8 h-8 rounded-full border border-black bg-neutral-900 flex items-center justify-center text-[10px] font-medium text-white">
+                    +12
+                </div>
+</div>
+<span class="text-[10px] uppercase tracking-widest text-neutral-500 font-medium">The Collective</span>
+</div>
+<button class="glass-button text-[10px] uppercase tracking-[0.2em] px-6 py-3 rounded-full text-white font-medium">
+            Initiate Project
+        </button>
+</div>
+</footer>
+
+</body></html>
