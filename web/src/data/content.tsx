@@ -19,27 +19,33 @@ export const siteContent = {
             { label: "Soluções", href: "#" },
             { label: "Hub de Ideias", href: "#" }
         ],
-        button: "Fale com a gente"
+        button: {
+            label: "Fale com a gente",
+            href: "https://api.whatsapp.com/send?phone=5516993890207"
+        }
     },
 
     // -------------------------
     // SEÇÃO 1: HERO
     // -------------------------
     hero: {
-        badge: "Do insight.<br />ao resultado.", 
+        badge: "Do insight.<br />ao resultado.",
         title: (
             <>
                 Alcance Múltiplo.<br />
-                Soluções Únicas. <span className="align-top text-2xl font-light text-gray-400">+</span>
+                Soluções Únicas. <span className="align-top text-2xl font-light text-gray-400 font-sans">*</span>
             </>
         ),
         description: (
             <>
-                Transformando desafios de mercado em resultados tangíveis. <span className="text-coral">Inteligência estratégica</span>, agilidade e criatividade assertiva para marcas que <span className="text-magenta">desejam liderar</span>.
+                Transformando desafios de mercado em resultados tangíveis. <span className="text-coral">Inteligência estratégica</span>, agilidade e criatividade assertiva para marcas que <span className="text-magenta">desejam destacar-se no mercado</span>.
             </>
         ),
         buttons: {
-            primary: "Vamos Conversar?", // Atualizado: Sugestão aprovada
+            primary: {
+                label: "Vamos Conversar?",
+                href: "https://api.whatsapp.com/send?phone=5516993890207"
+            },
             secondary: "Nossos Cases",
             hint: "30 minutos para explorar múltiplas direções para sua marca." // Atualizado: Valor sobre brinde
         },
@@ -61,10 +67,17 @@ export const siteContent = {
             }
         },
         social: {
-            label: "Nossas redes"
+            label: "Nossas redes",
+            links: {
+                instagram: "https://www.instagram.com/agenciscomunicacao",
+                facebook: "https://www.facebook.com/agenciscomunicacao",
+                linkedin: "https://www.linkedin.com/company/agencis-comunica%C3%A7%C3%A3o",
+                whatsapp: "https://api.whatsapp.com/send?phone=5516993890207"
+            }
         },
         cards: {
-            sectionHint: "O que impulsiona o seu sucesso?", // Traduzido
+            sectionSymbol: "*",
+            sectionHint: "O asterisco é só para te avisar: Fórmulas prontas não têm lugar aqui.", // Traduzido
             carouselHint: "Combinamos estratégia, design e cultura para construir soluções que impactam e entregam resultados reais.", // Traduzido
             card1: {
                 number: "01",
@@ -79,6 +92,16 @@ export const siteContent = {
             card3: {
                 number: "03",
                 title: "Sem Fórmulas Prontas — apenas o que seu negócio realmente precisa." // Traduzido
+            },
+            card4: {
+                number: "04",
+                title: "Expertise no Offline —",
+                description: "Somos calejados na comunicação tangível. Dominamos a excelência da produção gráfica, editorial e OOH, garantindo que o impacto da sua marca no mundo físico tenha a mesma precisão, acabamento e qualidade técnica de um projeto digital de elite."
+            },
+            card5: {
+                number: "05",
+                title: "Viciados no Novo —",
+                description: "Nossa curiosidade é inesgotável. De Inteligência Artificial a Motion Design e estratégias de performance, estamos na vanguarda das tendências para garantir que sua marca lidere as conversas digitais e utilize as ferramentas mais avançadas do mercado hoje."
             }
         }
     },
@@ -116,7 +139,7 @@ export const siteContent = {
     cases: {
         badge: "Nosso Portfólio",
         title: {
-            p1: "Casos de",
+            p1: "Cases de",
             h1: "Sucesso"
         },
         description: "Construímos produtos e marcas que movem o mercado. Do agronegócio ao varejo, entregamos impacto.",
@@ -130,17 +153,20 @@ export const siteContent = {
             {
                 tags: ["Agronegócio", "Institucional"],
                 title: "ABRAPA",
-                description: "Crescimento 100% orgânico. | Visibilidade Institucional"
+                description: "Crescimento 100% orgânico. | Visibilidade Institucional",
+                image: "/images/img_abrapa.webp"
             },
             {
                 tags: ["Varejo", "Branding"],
                 title: "Nessa Distribuidora",
-                description: "Posicionamento Consolidado. | Branding Completo"
+                description: "Posicionamento Consolidado. | Branding Completo",
+                image: "/images/img_nessa.webp"
             },
             {
                 tags: ["Agronegócio", "Internacional"],
                 title: "ABIEC",
-                description: "Impacto Visual & Informação. | Visibilidade Internacional"
+                description: "Impacto Visual & Informação. | Visibilidade Internacional",
+                image: "/images/img_abiec.webp"
             }
         ],
         quotes: [
@@ -150,13 +176,23 @@ export const siteContent = {
                 p2: " de forma estratégica.",
                 author: "Parceiro ABRAPA",
                 role: "Setor Agronegócio",
+                avatar: "/images/avatar-1.jpg"
             },
             {
-                p1: "Precisávamos de ",
-                h1: "agilidade e assertividade",
-                p2: ". A Agencis entregou uma estratégia que sustenta nosso crescimento sem perder a essência.",
-                author: "Parceiro Nessa",
-                role: "Varejo",
+                p1: "A equipe da Agencis ",
+                h1: "não apenas desenhou nossa marca",
+                p2: "; eles redefiniram nossa presença no mercado de forma visual e estratégica.",
+                author: "João Marcelo Sarrassini",
+                role: "CEO Nessa Distribuidora",
+                avatar: "/images/joao_nessa.webp"
+            },
+            {
+                p1: "Design que traduziu nossa ",
+                h1: "identidade com precisão",
+                p2: ", atraindo visitantes e reforçando a imagem do Brazilian Beef em escala global.",
+                author: "Bruno Guzzo",
+                role: "Comunicação da ABIEC",
+                avatar: "/images/bruno_abiec.webp"
             }
         ]
     },
@@ -187,18 +223,22 @@ export const siteContent = {
             },
             {
                 icon: "auto_awesome",
-                title: <>Branding &amp;<br />Identity</>,
-                subtitle: "Meaning Visualized"
+                title: <>Branding &amp;<br />Identidade</>,
+                subtitle: "Lumi Pizza",
+                image: "/images/home_lumi_pizza.webp"
             },
             {
-                title: "Digital Marketing",
-                tags: ["SMM", "Ads", "Email"],
-                icon: "trending_up"
+                icon: "play_circle",
+                title: <>Nova linha,<br />nova embalagem</>,
+                subtitle: "Nafta Brasil",
+                image: "/images/vid_nafta.webp",
+                video: "/images/vid_nafta.mp4"
             },
             {
-                icon: "wifi_tethering",
-                title: "Agencis",
-                description: <>We don&apos;t believe in <span className="text-white font-normal">one-size-fits-all solutions.</span> You bring the request — we bring the mix of tools that <span className="text-[#ff6b6b] italic font-normal">will actually work.</span></>,
+                icon: "auto_awesome",
+                title: <>Branding &amp;<br />Identidade</>,
+                subtitle: "Arroyo",
+                image: "/images/home_arroyo.webp",
                 linkText: "VER PROJETOS",
                 smallText: <>Estratégia sob Medida<br />Desde 2018</>
             },
@@ -231,24 +271,39 @@ export const siteContent = {
         items: [
             {
                 number: "01.",
-                title: "Inteligência Estratégica",
+                title: "Inteligência Estratégica —",
                 tags: ["Análise de Dados", "Rotas de Impacto"],
+                image: "/images/serv_1.jpg",
                 description: {
                     p1: "Não usamos fórmulas prontas. Analisamos dados e o seu mercado para desenhar ",
                     h1: "rotas seguras",
                     p2: " e de alto impacto."
                 },
-                buttonText: "Explore Now"
+                buttonText: "Saiba mais"
             },
             {
                 number: "02.",
-                title: "Agilidade Assertiva",
-                tags: ["Rapidez", "Foco no ROI"]
+                title: "Agilidade Assertiva —",
+                tags: ["Rapidez", "Foco no ROI"],
+                image: "/images/serv_2.jpg",
+                description: {
+                    p1: "O mercado não espera por fórmulas lentas. Executamos com rapidez e ",
+                    h1: "precisão cirúrgica",
+                    p2: ", adaptando estratégias em tempo real para garantir que sua marca nunca perca o foco no ROI e nos resultados."
+                },
+                buttonText: "Saiba mais"
             },
             {
                 number: "03.",
-                title: "Comunicação 360",
-                tags: ["Online", "Offline"]
+                title: "Comunicação 360º —",
+                tags: ["Online", "Offline"],
+                image: "/images/serv_3.jpg",
+                description: {
+                    p1: "Do pixel à impressão, da estratégia à conversão. Integramos o marketing digital à ",
+                    h1: "excelência do offline",
+                    p2: " para cuidar de cada ponto de contato da sua marca, garantindo uma presença única, coerente e de alto impacto."
+                },
+                buttonText: "Saiba mais"
             }
         ]
     },
@@ -279,8 +334,7 @@ export const siteContent = {
                 "EDIFÍCIO NEO RIBEIRÃO",
                 "Av. Maria Jesus de Condeixa, 600 - Sala 735",
                 "Ribeirão Preto/SP",
-                "Telefone: 16 3289-1573",
-                "E-mail: contato@agencis.com.br"
+                "Telefone: 16 3289-1573"
             ],
             policiesTitle: "Políticas & News",
             policiesLinks: ["Termos de Uso", "Política de Privacidade"],

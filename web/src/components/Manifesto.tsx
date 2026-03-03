@@ -57,13 +57,13 @@ export default function Manifesto() {
 
             <div className="max-w-[1400px] w-full mx-auto relative z-10 flex flex-col">
                 <div className="flex items-center justify-between mb-8">
-                    <div className="flex items-center gap-3">
-                        <span className="w-2 h-2 rounded-full bg-coral-gradient"></span>
-                        <span className="text-sm uppercase tracking-widest text-gray-400 font-medium">{siteContent.manifesto.badge}</span>
-                    </div>
+                    <span className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase flex items-center gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-pink-500 shadow-[0_0_10px_rgba(233,30,99,0.8)] animate-pulse"></span>
+                        {siteContent.manifesto.badge}
+                    </span>
                 </div>
 
-                <h1 ref={titleRef} className="font-display font-thin text-[clamp(2.5rem,8vw,9rem)] leading-[0.95] tracking-[-0.04em] text-white/90 text-left">
+                <h1 ref={titleRef} className="font-display font-thin text-[clamp(2.2rem,8vw,9rem)] leading-[0.95] tracking-[-0.04em] text-white/90 text-left break-words">
                     {siteContent.manifesto.title.p1} <span className="text-coral text-shadow-[0_0_30px_rgba(255,107,107,0.5)] font-light">{siteContent.manifesto.title.h1}</span> {siteContent.manifesto.title.p2}{" "}
                     {siteContent.manifesto.title.p3} <span className="text-magenta text-shadow-[0_0_30px_rgba(217,70,239,0.5)] font-light">{siteContent.manifesto.title.h2}</span>{" "}
                     <span className="relative inline-block">

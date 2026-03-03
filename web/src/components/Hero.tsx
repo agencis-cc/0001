@@ -1,10 +1,13 @@
 "use client";
+import React from "react";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import HeroFeatureCard from "./HeroFeatureCard";
 import { siteContent } from "../data/content";
+import { Instagram, Linkedin, Facebook } from "lucide-react";
+import Magnetic from "./Magnetic";
 
 gsap.registerPlugin(useGSAP);
 
@@ -14,6 +17,42 @@ export default function Hero() {
     const mediaRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
+    const [adCount, setAdCount] = useState(8295);
+
+    const [activeSlide, setActiveSlide] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const [isTransitioning, setIsTransitioning] = useState(true);
+
+    const handleNext = () => {
+        setIsTransitioning(true);
+        setActiveSlide((prev) => prev + 1);
+    };
+
+    const handlePrev = () => {
+        setIsTransitioning(true);
+        setActiveSlide((prev) => (prev > 0 ? prev - 1 : 4));
+    };
+
+    useEffect(() => {
+        if (isPaused) return;
+
+        const interval = setInterval(() => {
+            handleNext();
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [isPaused, activeSlide]);
+
+    // Seamless jump
+    useEffect(() => {
+        if (activeSlide === 5) {
+            const timer = setTimeout(() => {
+                setIsTransitioning(false);
+                setActiveSlide(0);
+            }, 700); // Same as transition duration
+            return () => clearTimeout(timer);
+        }
+    }, [activeSlide]);
 
     useGSAP(() => {
         // Media fade-in and subtle scale down
@@ -53,6 +92,21 @@ export default function Hero() {
         };
 
         window.addEventListener("mousemove", handleMouseMove);
+
+        // Counter Animation for Trabalhos Finalizados
+        const targetValue = parseInt(siteContent.hero.stats.adBudget.value.replace(/\./g, ''));
+        const counterObj = { value: 8295 };
+
+        gsap.to(counterObj, {
+            value: targetValue,
+            duration: 15,
+            ease: "power1.inOut",
+            delay: 1.5,
+            onUpdate: () => {
+                setAdCount(Math.floor(counterObj.value));
+            }
+        });
+
         return () => window.removeEventListener("mousemove", handleMouseMove);
 
     }, { scope: containerRef });
@@ -91,21 +145,33 @@ export default function Hero() {
                     <h1 className="font-display font-thin-display text-6xl lg:text-[5rem] leading-[0.95] text-white tracking-tighter mb-4">
                         {siteContent.hero.title}
                     </h1>
-                    <div
-                        className="text-xs text-gray-400 uppercase tracking-widest mb-10 pl-1 border-l border-gray-700 ml-1"
-                        dangerouslySetInnerHTML={{ __html: siteContent.hero.badge }}
-                    />
-                    <div className="flex items-center gap-4 mb-20 w-fit cursor-pointer group hover:opacity-80 transition-opacity">
-                        <div className="glass-pill rounded-full pl-6 pr-1 py-1 flex items-center gap-4">
-                            <span className="text-sm font-light text-white">{siteContent.hero.buttons.primary}</span>
-                            <button className="w-10 h-10 rounded-full bg-coral-gradient flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
-                                <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                            </button>
+                    <div className="mb-10 flex items-center gap-3">
+                        <span className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase flex items-center gap-3">
+                            <span className="w-1.5 h-1.5 rounded-full bg-pink-500 shadow-[0_0_10px_rgba(233,30,99,0.8)] animate-pulse"></span>
+                            <span dangerouslySetInnerHTML={{ __html: siteContent.hero.badge }}></span>
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-6 mb-20">
+                        <div className="flex items-center gap-4">
+                            <Magnetic>
+                                <a
+                                    href={siteContent.hero.buttons.primary.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="glass-pill rounded-full pl-6 pr-1 py-1 flex items-center gap-4 hover:opacity-80 transition-opacity cursor-pointer group"
+                                    aria-label={siteContent.hero.buttons.primary.label}
+                                >
+                                    <span className="text-sm font-light text-white">{siteContent.hero.buttons.primary.label}</span>
+                                    <div className="w-10 h-10 rounded-full bg-coral-gradient flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
+                                        <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </div>
+                                </a>
+                            </Magnetic>
+                            <div className="glass-pill rounded-full px-6 py-3.5 flex items-center justify-center hover:bg-white/10 transition-colors cursor-pointer">
+                                <span className="text-sm font-medium text-white">{siteContent.hero.buttons.secondary}</span>
+                            </div>
                         </div>
-                        <div className="glass-pill rounded-full px-6 py-3.5 flex items-center justify-center hover:bg-white/10 transition-colors">
-                            <span className="text-sm font-medium text-white">{siteContent.hero.buttons.secondary}</span>
-                        </div>
-                        <p className="text-[10px] text-gray-400 max-w-[120px] leading-tight">
+                        <p className="text-[10px] text-gray-400 max-w-[150px] leading-tight">
                             {siteContent.hero.buttons.hint}
                         </p>
                     </div>
@@ -129,38 +195,57 @@ export default function Hero() {
 
                 <div className="col-span-12 lg:col-span-7 relative z-10 flex flex-col items-end pt-10 pointer-events-none">
                     <div className="pointer-events-auto flex flex-col items-end gap-4 mt-20 lg:mt-32 mr-0 lg:mr-10">
-                        <div className="glass-card bg-[#F3F3F3]/10 rounded-[2rem] p-4 w-[280px] shadow-2xl relative mb-4">
+                        <div className="glass-card rounded-[2rem] p-4 w-[280px] shadow-2xl relative mb-4 group cursor-pointer transition-all duration-300">
                             <div className="w-full h-32 bg-black rounded-2xl mb-4 overflow-hidden relative">
-                                <img className="absolute top-[-20px] left-[-20px] w-[140%] h-[140%] object-cover opacity-80 mix-blend-screen" src="/images/fintech-data.png" alt="Data abstract" />
+                                <img className="absolute inset-0 w-full h-full object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100" src="/images/polvo_job.jpg" alt="Agencis Work" />
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl font-display text-coral font-light mb-1">{siteContent.hero.stats.adBudget.value}</div>
-                                <div className="text-xs text-gray-300 font-medium uppercase tracking-wide mb-3">{siteContent.hero.stats.adBudget.label}</div>
-                                <div className="flex justify-center mb-3">
-                                    <span className="material-symbols-outlined font-light text-2xl text-white">add</span>
+                                <div className="text-3xl font-display text-coral font-light">
+                                    {adCount.toLocaleString('pt-BR')}
                                 </div>
-                                <p className="text-[11px] text-gray-400 leading-tight px-4 mb-4">
+                                <div className="text-[10px] text-coral/80 font-medium uppercase tracking-wider mb-2">{siteContent.hero.stats.adBudget.label}</div>
+
+                                <p className="text-[11px] text-gray-400 leading-tight px-6 mb-5">
                                     {siteContent.hero.stats.adBudget.description}
                                 </p>
-                                <div className="flex justify-center -space-x-2 pb-2">
-                                    <img alt="Avatar" className="w-8 h-8 rounded-full border-2 border-[#15151A]" src="/images/avatar-1.jpg" />
-                                    <img alt="Avatar" className="w-8 h-8 rounded-full border-2 border-[#15151A]" src="/images/avatar-2.jpg" />
-                                    <img alt="Avatar" className="w-8 h-8 rounded-full border-2 border-[#15151A]" src="/images/avatar-3.jpg" />
+
+                                <div className="pb-2">
+                                    <button className="text-[9px] uppercase tracking-[0.2em] text-white/50 hover:text-white border border-white/10 hover:border-white/30 rounded-full px-5 py-2 transition-all duration-300 flex items-center justify-center gap-2 mx-auto group/btn">
+                                        Portfolio <span className="text-sm group-hover/btn:translate-x-1 transition-transform">→</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="hidden lg:flex flex-col gap-2 items-end absolute right-[260px] top-[180px]">
-                            <button className="w-12 h-12 glass-pill rounded-2xl flex items-center justify-center hover:bg-white/10 transition">
-                                <span className="text-white font-bold text-lg">📷</span>
-                            </button>
-                            <button className="w-12 h-12 glass-pill rounded-2xl flex items-center justify-center hover:bg-white/10 transition">
-                                <span className="text-white font-bold text-lg">in</span>
-                            </button>
+                        <div className="hidden lg:flex flex-col gap-2 items-end absolute right-[340px] top-[180px]">
+                            <a
+                                href={siteContent.hero.social.links.instagram}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-12 h-12 glass-pill rounded-2xl flex items-center justify-center hover:bg-white/10 transition group/btn"
+                                aria-label="Instagram"
+                            >
+                                <Instagram className="text-white w-5 h-5 transition-transform group-hover/btn:scale-110" />
+                            </a>
+                            <a
+                                href={siteContent.hero.social.links.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-12 h-12 glass-pill rounded-2xl flex items-center justify-center hover:bg-white/10 transition group/btn"
+                                aria-label="LinkedIn"
+                            >
+                                <Linkedin className="text-white w-5 h-5 transition-transform group-hover/btn:scale-110" />
+                            </a>
                             <div className="flex items-center gap-3">
-                                <button className="w-12 h-12 glass-pill rounded-2xl flex items-center justify-center hover:bg-white/10 transition">
-                                    <span className="text-white font-bold text-lg">f</span>
-                                </button>
+                                <a
+                                    href={siteContent.hero.social.links.facebook}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-12 h-12 glass-pill rounded-2xl flex items-center justify-center hover:bg-white/10 transition group/btn"
+                                    aria-label="Facebook"
+                                >
+                                    <Facebook className="text-white w-5 h-5 transition-transform group-hover/btn:scale-110" />
+                                </a>
                                 <span className="text-xs text-gray-300 w-12 leading-tight">{siteContent.hero.social.label}</span>
                             </div>
                         </div>
@@ -169,7 +254,9 @@ export default function Hero() {
 
                 <div className="col-span-12 mt-32 mb-10 flex flex-col lg:flex-row items-start lg:items-end justify-between relative z-20">
                     <div className="flex items-start gap-3 mb-8 lg:mb-0">
-                        <span className="material-symbols-outlined font-light text-3xl text-gray-500 mt-1">add</span>
+                        <span className="material-symbols-outlined font-light text-3xl text-gray-500 mt-1">
+                            {siteContent.hero.cards.sectionSymbol === "+" ? "add" : siteContent.hero.cards.sectionSymbol}
+                        </span>
                         <p className="text-xs text-gray-400 max-w-[100px] leading-relaxed">
                             {siteContent.hero.cards.sectionHint}
                         </p>
@@ -181,44 +268,80 @@ export default function Hero() {
                     </div>
                 </div>
 
-                <div ref={cardsRef} className="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-8">
-                    <div className="hidden lg:flex flex-col justify-end pb-8 pr-4">
-                        <p className="text-xs text-gray-400 leading-relaxed mb-6">
+                <div ref={cardsRef} className="col-span-12 grid grid-cols-12 gap-6 mt-12 overflow-visible">
+                    {/* Left Side: Hint & Controls */}
+                    <div className="col-span-12 lg:col-span-3 flex flex-col justify-end pb-8 lg:pr-8">
+                        <p className="text-xs text-gray-400 leading-relaxed mb-8">
                             {siteContent.hero.cards.carouselHint}
                         </p>
                         <div className="flex gap-2">
-                            <button className="w-12 h-12 rounded-2xl bg-white text-black flex items-center justify-center hover:opacity-90 transition">
+                            <button
+                                onClick={() => setActiveSlide((prev) => (prev > 0 ? prev - 1 : 4))}
+                                className="w-12 h-12 rounded-2xl bg-white text-black flex items-center justify-center hover:bg-gray-200 transition-colors pointer-events-auto cursor-pointer"
+                            >
                                 <span className="material-symbols-outlined">arrow_back</span>
                             </button>
-                            <button className="w-12 h-12 rounded-2xl bg-white text-black flex items-center justify-center hover:opacity-90 transition">
+                            <button
+                                onClick={() => setActiveSlide((prev) => (prev < 4 ? prev + 1 : 0))}
+                                className="w-12 h-12 rounded-2xl bg-white text-black flex items-center justify-center hover:bg-gray-200 transition-colors pointer-events-auto cursor-pointer"
+                            >
                                 <span className="material-symbols-outlined">arrow_forward</span>
                             </button>
                         </div>
                     </div>
 
-                    <HeroFeatureCard
-                        number={siteContent.hero.cards.card1.number}
-                        title={siteContent.hero.cards.card1.title}
-                        description={siteContent.hero.cards.card1.description}
-                        variant="dark"
-                        accentColor="coral"
-                    />
-
-                    <HeroFeatureCard
-                        number={siteContent.hero.cards.card2.number}
-                        title={siteContent.hero.cards.card2.title}
-                        description={siteContent.hero.cards.card2.description}
-                        variant="glass"
-                        accentColor="coral"
-                    />
-
-                    <HeroFeatureCard
-                        number={siteContent.hero.cards.card3.number}
-                        title={siteContent.hero.cards.card3.title}
-                        variant="dark"
-                        accentColor="magenta"
-                    />
-
+                    {/* Right Side: Sliding Cards Container */}
+                    <div className="col-span-12 lg:col-span-9 overflow-hidden relative -mt-8 pt-8 pb-8 -mb-8">
+                        <div
+                            className={`flex gap-6 ${isTransitioning ? 'transition-transform duration-700 ease-[cubic-bezier(0.8,0,0.2,1)]' : 'transition-none'}`}
+                            style={{
+                                transform: `translateX(-${activeSlide * (280 + 24)}px)`,
+                                pointerEvents: 'auto'
+                            }}
+                            onMouseEnter={() => setIsPaused(true)}
+                            onMouseLeave={() => setIsPaused(false)}
+                        >
+                            {[0, 1].map((setIndex) => (
+                                <React.Fragment key={setIndex}>
+                                    <HeroFeatureCard
+                                        number={siteContent.hero.cards.card1.number}
+                                        title={siteContent.hero.cards.card1.title}
+                                        description={siteContent.hero.cards.card1.description}
+                                        variant="dark"
+                                        accentColor="coral"
+                                        whiteNumber={true}
+                                    />
+                                    <HeroFeatureCard
+                                        number={siteContent.hero.cards.card2.number}
+                                        title={siteContent.hero.cards.card2.title}
+                                        description={siteContent.hero.cards.card2.description}
+                                        variant="glass"
+                                        accentColor="magenta"
+                                    />
+                                    <HeroFeatureCard
+                                        number={siteContent.hero.cards.card3.number}
+                                        title={siteContent.hero.cards.card3.title}
+                                        variant="dark"
+                                        accentColor="coral"
+                                    />
+                                    <HeroFeatureCard
+                                        number={siteContent.hero.cards.card4.number}
+                                        title={siteContent.hero.cards.card4.title}
+                                        description={siteContent.hero.cards.card4.description}
+                                        variant="glass"
+                                        accentColor="magenta"
+                                    />
+                                    <HeroFeatureCard
+                                        number={siteContent.hero.cards.card5.number}
+                                        title={siteContent.hero.cards.card5.title}
+                                        description={siteContent.hero.cards.card5.description}
+                                        variant="dark"
+                                        accentColor="coral"
+                                    />
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

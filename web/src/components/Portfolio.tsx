@@ -11,6 +11,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 export default function Portfolio() {
     const sectionRef = useRef<HTMLElement>(null);
     const gridRef = useRef<HTMLDivElement>(null);
+    const naftaVideoRef = useRef<HTMLVideoElement>(null);
 
     useGSAP(() => {
         if (!gridRef.current) return;
@@ -44,17 +45,63 @@ export default function Portfolio() {
             <div className="w-full max-w-[1440px] mx-auto relative z-10">
                 <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-6 gap-4 md:gap-5 lg:gap-6 lg:auto-rows-[180px]">
 
-                    <div className="lg:col-span-2 lg:row-span-2 flex items-end p-8 md:p-10">
+                    <div className="lg:col-span-2 lg:row-span-2 flex flex-col justify-end p-8 md:p-10">
+                        <div className="mb-4">
+                            <span className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase flex items-center gap-3">
+                                <span className="w-1.5 h-1.5 rounded-full bg-pink-500 shadow-[0_0_10px_rgba(233,30,99,0.8)] animate-pulse"></span>
+                                Portfólio
+                            </span>
+                        </div>
                         <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[0.9] font-display font-thin tracking-tight text-white">
                             {siteContent.portfolioHighlights.title}
                         </h1>
                     </div>
 
-                    <div className="lg:col-span-2 lg:row-span-1 glass-card bg-white/[0.03] backdrop-blur-[20px] rounded-3xl border border-white/[0.06] flex items-center px-10 hover:-translate-y-1 hover:border-white/10 hover:shadow-2xl transition-all duration-500">
-                        <h2 className="text-3xl md:text-5xl font-display font-thin leading-tight text-gray-200">
-                            {siteContent.portfolioHighlights.subtitle}
-                        </h2>
-                    </div>
+                    <article
+                        className="lg:col-span-2 lg:row-span-2 glass-card bg-white/[0.03] backdrop-blur-[20px] rounded-3xl border border-white/[0.06] p-10 md:p-12 flex flex-col justify-end relative group hover:-translate-y-1 hover:border-white/10 hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer"
+                        onMouseEnter={() => naftaVideoRef.current?.play()}
+                        onMouseLeave={() => {
+                            if (naftaVideoRef.current) {
+                                naftaVideoRef.current.pause();
+                                naftaVideoRef.current.currentTime = 0;
+                            }
+                        }}
+                    >
+                        {siteContent.portfolioHighlights.items[2].image && (
+                            <>
+                                <img
+                                    src={siteContent.portfolioHighlights.items[2].image}
+                                    className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-0 transition-opacity duration-700 ease-out group-hover:scale-110"
+                                    alt="Background"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-0 transition-opacity duration-500"></div>
+                            </>
+                        )}
+                        {siteContent.portfolioHighlights.items[2].video && (
+                            <video
+                                ref={naftaVideoRef}
+                                src={siteContent.portfolioHighlights.items[2].video}
+                                muted
+                                loop
+                                playsInline
+                                preload="auto"
+                                className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 scale-110 group-hover:scale-100"
+                            />
+                        )}
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                        <div className="mb-auto relative z-10 w-fit group-hover:opacity-0 transition-opacity duration-500">
+                            <span className="material-symbols-outlined text-4xl text-white/80 p-4 rounded-full bg-white/5 border border-white/10">{siteContent.portfolioHighlights.items[2].icon}</span>
+                        </div>
+                        <h3 className="text-4xl md:text-5xl font-light text-white mb-4 relative z-10 leading-[1.1] tracking-tight group-hover:opacity-0 transition-opacity duration-500">
+                            {siteContent.portfolioHighlights.items[2].title}
+                        </h3>
+                        <div className="flex items-center justify-between relative z-10 group-hover:opacity-0 transition-opacity duration-500">
+                            <p className="text-sm text-gray-400 font-light tracking-[0.2em] uppercase">{siteContent.portfolioHighlights.items[2].subtitle}</p>
+                            <div className="flex items-center gap-2 group/link">
+                                <span className="material-symbols-outlined text-white/50 text-base transition-transform group-hover/link:translate-x-1">arrow_forward</span>
+                            </div>
+                        </div>
+                    </article>
 
                     <article className="lg:col-span-2 lg:row-span-3 bg-white text-[#02040a] rounded-3xl p-10 md:p-14 flex flex-col justify-between group overflow-hidden relative shadow-2xl hover:scale-[1.01] hover:-translate-y-1 transition-all duration-500 cursor-pointer">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-gray-100 to-transparent rounded-bl-full opacity-50 pointer-events-none"></div>
@@ -79,60 +126,82 @@ export default function Portfolio() {
                         </div>
                     </article>
 
-                    <div className="lg:col-span-1 lg:row-span-1 glass-card bg-white/[0.03] backdrop-blur-[20px] rounded-3xl border border-white/[0.06] flex items-center justify-center text-center p-6 hover:-translate-y-1 transition-all duration-500">
-                        <span className="text-[#e82c89] text-4xl md:text-5xl font-light italic tracking-tight">{siteContent.portfolioHighlights.block2Subtitle}</span>
-                    </div>
-
                     <article className="lg:col-span-1 lg:row-span-2 glass-card bg-white/[0.03] backdrop-blur-[20px] rounded-3xl border border-white/[0.06] p-8 flex flex-col justify-end relative group hover:-translate-y-1 hover:border-white/10 hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        {siteContent.portfolioHighlights.items[1].image && (
+                            <>
+                                <img
+                                    src={siteContent.portfolioHighlights.items[1].image}
+                                    className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:scale-110"
+                                    alt="Background"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                            </>
+                        )}
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
                         <div className="mb-auto relative z-10">
-                            <span className="material-symbols-outlined text-3xl text-white/80 p-3 rounded-full bg-white/5 border border-white/10">{siteContent.portfolioHighlights.items[1].icon}</span>
+                            <span className="material-symbols-outlined text-2xl text-white/80 p-2 rounded-full bg-white/5 border border-white/10">{siteContent.portfolioHighlights.items[1].icon}</span>
                         </div>
-                        <h3 className="text-2xl font-light text-white mb-2 relative z-10">
+                        <h3 className="text-xl font-light text-white mb-1 relative z-10 leading-tight">
                             {siteContent.portfolioHighlights.items[1].title}
                         </h3>
-                        <p className="text-xs text-gray-400 font-light tracking-wide uppercase relative z-10">{siteContent.portfolioHighlights.items[1].subtitle}</p>
-                    </article>
-
-                    <article className="lg:col-span-2 lg:row-span-1 glass-card bg-white/[0.03] backdrop-blur-[20px] rounded-3xl border border-white/[0.06] p-8 flex items-center justify-between gap-6 group hover:-translate-y-1 transition-all duration-500 cursor-pointer">
-                        <div className="flex-1">
-                            <h3 className="text-2xl font-light text-white mb-1 group-hover:text-[#ff6b6b] transition-colors">
-                                {siteContent.portfolioHighlights.items[2].title}
-                            </h3>
-                            <div className="flex gap-2 mt-2">
-                                <span className="text-[10px] uppercase tracking-wider text-gray-400 border border-white/10 px-2 py-1 rounded">{siteContent.portfolioHighlights.items[2].tags?.[0]}</span>
-                                <span className="text-[10px] uppercase tracking-wider text-gray-400 border border-white/10 px-2 py-1 rounded">{siteContent.portfolioHighlights.items[2].tags?.[1]}</span>
-                                <span className="text-[10px] uppercase tracking-wider text-gray-400 border border-white/10 px-2 py-1 rounded">{siteContent.portfolioHighlights.items[2].tags?.[2]}</span>
+                        <div className="flex items-center justify-between relative z-10 mt-1">
+                            <p className="text-[10px] text-gray-400 font-light tracking-wide uppercase">{siteContent.portfolioHighlights.items[1].subtitle}</p>
+                            <div className="flex items-center gap-2 group/link opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span className="material-symbols-outlined text-white/50 text-xs transition-transform group-hover/link:translate-x-1">arrow_forward</span>
                             </div>
-                        </div>
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#e82c89] to-[#ff6b6b] flex items-center justify-center shadow-[0_4px_20px_rgba(232,44,137,0.4)]">
-                            <span className="material-symbols-outlined text-white text-xl">{siteContent.portfolioHighlights.items[2].icon}</span>
                         </div>
                     </article>
 
-                    <div className="lg:col-span-2 lg:row-span-2 glass-card bg-white/[0.03] backdrop-blur-[20px] rounded-3xl border border-white/[0.06] p-10 md:p-12 flex flex-col justify-between relative overflow-hidden hover:-translate-y-1 transition-all duration-500">
-                        <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#e82c89] rounded-full filter blur-[80px] opacity-20"></div>
-                        <div className="relative z-10">
-                            <div className="flex items-center gap-3 mb-6 text-white text-2xl font-light tracking-wide">
-                                <span className="material-symbols-outlined text-3xl text-[#ff6b6b]">{siteContent.portfolioHighlights.items[3].icon}</span>
-                                <span className="font-normal font-display">{siteContent.portfolioHighlights.items[3].title}</span>
-                            </div>
-                            <p className="text-gray-300 text-lg leading-relaxed font-light max-w-xl">
-                                {siteContent.portfolioHighlights.items[3].description}
-                            </p>
+                    <article className="lg:col-span-1 lg:row-span-2 glass-card bg-white/[0.03] backdrop-blur-[20px] rounded-3xl border border-white/[0.06] p-8 flex flex-col justify-end relative group hover:-translate-y-1 hover:border-white/10 hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer">
+                        {siteContent.portfolioHighlights.items[4].image && (
+                            <>
+                                <img
+                                    src={siteContent.portfolioHighlights.items[4].image}
+                                    className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:scale-110"
+                                    alt="Background"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                            </>
+                        )}
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                        <div className="mb-auto relative z-10">
+                            <span className="material-symbols-outlined text-3xl text-white/80 p-3 rounded-full bg-white/5 border border-white/10">{siteContent.portfolioHighlights.items[4].icon}</span>
                         </div>
-                        <div className="flex items-center justify-between mt-8 relative z-10">
-                            <a className="inline-flex items-center gap-0 group cursor-pointer no-underline bg-[#0a0a0a] rounded-full p-1 pr-6 border border-white/10 hover:border-white/30 transition-all shadow-lg" href="#">
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#e82c89] to-[#ff6b6b] flex items-center justify-center mr-4 group-hover:scale-105 transition-transform">
-                                    <span className="material-symbols-outlined text-white text-sm">arrow_forward</span>
-                                </div>
-                                <span className="text-sm font-medium text-white tracking-wide uppercase">
-                                    {siteContent.portfolioHighlights.items[3].linkText}
-                                </span>
-                            </a>
-                            <p className="hidden lg:block text-[9px] text-gray-500 uppercase tracking-[0.2em] text-right">
-                                {siteContent.portfolioHighlights.items[3].smallText}
+                        <h3 className="text-2xl font-light text-white mb-2 relative z-10 leading-tight">
+                            {siteContent.portfolioHighlights.items[4].title}
+                        </h3>
+                        <div className="flex items-center justify-between relative z-10 mt-2">
+                            <p className="text-xs text-gray-400 font-light tracking-wide uppercase">{siteContent.portfolioHighlights.items[4].subtitle}</p>
+                            <div className="flex items-center gap-2 group/link opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span className="material-symbols-outlined text-white/50 text-sm transition-transform group-hover/link:translate-x-1">arrow_forward</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div className="lg:col-span-2 lg:row-span-2 glass-card bg-white/[0.03] backdrop-blur-[20px] rounded-3xl border border-white/[0.06] p-10 md:p-12 flex flex-col justify-end relative overflow-hidden hover:-translate-y-1 transition-all duration-500 group cursor-pointer">
+                        {siteContent.portfolioHighlights.items[3].image && (
+                            <>
+                                <img
+                                    src={siteContent.portfolioHighlights.items[3].image}
+                                    className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:scale-110"
+                                    alt="Background"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                            </>
+                        )}
+                        <div className="mb-auto relative z-10">
+                            <span className="material-symbols-outlined text-4xl text-white/80 p-4 rounded-full bg-white/5 border border-white/10">{siteContent.portfolioHighlights.items[3].icon}</span>
+                        </div>
+                        <h3 className="text-4xl md:text-5xl font-light text-white mb-3 relative z-10 leading-tight tracking-tight">
+                            {siteContent.portfolioHighlights.items[3].title}
+                        </h3>
+                        <div className="flex items-center justify-between relative z-10 mt-2">
+                            <p className="text-sm text-gray-400 font-light tracking-[0.2em] uppercase">
+                                {siteContent.portfolioHighlights.items[3].subtitle}
                             </p>
+                            <div className="flex items-center gap-2 group/link opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span className="material-symbols-outlined text-white/50 text-sm transition-transform group-hover/link:translate-x-1">arrow_forward</span>
+                            </div>
                         </div>
                     </div>
 

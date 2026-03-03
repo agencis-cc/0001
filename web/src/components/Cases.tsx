@@ -80,13 +80,16 @@ export default function Cases() {
                 {/* Sticky Sidebar */}
                 <div ref={sidebarRef} className="col-span-1 lg:col-span-5 relative">
                     <div className="lg:sticky lg:top-32 h-fit flex flex-col gap-10">
-                        <div className="absolute -top-32 -left-32 w-[600px] h-[600px] pointer-events-none opacity-40 z-[-1]">
-                            <img alt="3D Abstract Shape" className="w-full h-full object-contain" src="/images/abstract-octopus.png" />
+                        <div className="absolute -top-20 -left-20 w-[500px] h-[500px] pointer-events-none z-[-1]">
+                            <div className="absolute inset-0 bg-coral/20 rounded-full filter blur-[100px] animate-pulse-slow"></div>
+                            <div className="absolute top-20 left-20 w-[300px] h-[300px] bg-magenta/10 rounded-full filter blur-[80px]"></div>
                         </div>
                         <div ref={titleRef} className="space-y-4 relative z-10">
-                            <div className="flex items-center gap-3 mb-2">
-                                <span className="w-2 h-2 rounded-full bg-coral-gradient"></span>
-                                <span className="text-sm uppercase tracking-widest text-gray-400 font-medium">{siteContent.cases.badge}</span>
+                            <div className="mb-4">
+                                <span className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase flex items-center gap-3">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-pink-500 shadow-[0_0_10px_rgba(233,30,99,0.8)] animate-pulse"></span>
+                                    {siteContent.cases.badge}
+                                </span>
                             </div>
                             <h2 className="text-6xl lg:text-8xl font-display font-thin tracking-tighter text-white leading-[0.9]">
                                 {siteContent.cases.title.p1}<br /><span className="text-gray-500">{siteContent.cases.title.h1}</span>
@@ -143,7 +146,7 @@ export default function Cases() {
                     <article className="project-card group relative bg-[#0F0F16] rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 shadow-2xl">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 cursor-pointer"></div>
                         <div className="relative h-[480px] w-full overflow-hidden">
-                            <img alt="Fintech Project" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src="/images/fintech-data.png" />
+                            <img alt={siteContent.cases.projects[0].title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src={siteContent.cases.projects[0].image || "/images/fintech-data.png"} />
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 p-8 z-20 pointer-events-none">
                             <div className="flex justify-between items-end">
@@ -169,7 +172,7 @@ export default function Cases() {
                             {siteContent.cases.quotes[0].p1}<span className="text-magenta font-medium">{siteContent.cases.quotes[0].h1}</span>{siteContent.cases.quotes[0].p2}
                         </p>
                         <div className="flex items-center gap-4 mt-6">
-                            <img alt={siteContent.cases.quotes[0].author} className="w-12 h-12 rounded-full border border-white/20 object-cover" src="/images/avatar-1.jpg" />
+                            <img alt={siteContent.cases.quotes[0].author} className="w-12 h-12 rounded-full border border-white/20 object-cover" src={siteContent.cases.quotes[0].avatar} />
                             <div>
                                 <div className="text-white font-medium">{siteContent.cases.quotes[0].author}</div>
                                 <div className="text-gray-500 text-sm">{siteContent.cases.quotes[0].role}</div>
@@ -179,10 +182,8 @@ export default function Cases() {
 
                     <article className="project-card group relative bg-[#0F0F16] rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 shadow-2xl mt-8">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 cursor-pointer"></div>
-                        <div className="relative h-[480px] w-full overflow-hidden bg-gray-800">
-                            <div className="w-full h-full bg-gradient-to-br from-indigo-900 to-purple-900 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-700">
-                                <span className="text-9xl text-white/5 font-display font-bold">E-COM</span>
-                            </div>
+                        <div className="relative h-[480px] w-full overflow-hidden">
+                            <img alt={siteContent.cases.projects[1].title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src={siteContent.cases.projects[1].image} />
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 p-8 z-20 pointer-events-none">
                             <div className="flex justify-between items-end">
@@ -203,12 +204,12 @@ export default function Cases() {
 
                     {/* Quote 2 */}
                     <div className="quote-card bg-[#14141C]/70 backdrop-blur-[16px] border border-white/5 rounded-3xl p-8 relative ml-auto w-full md:w-[90%] transform translate-x-0 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]">
-                        <span className="absolute -top-4 -right-4 w-12 h-12 bg-gray-800 border border-white/10 rounded-full flex items-center justify-center text-white text-2xl font-serif">&quot;</span>
+                        <span className="absolute -top-4 -left-4 w-12 h-12 bg-coral-gradient rounded-full flex items-center justify-center text-white text-2xl font-serif">&quot;</span>
                         <p className="text-xl md:text-2xl font-display font-light leading-relaxed text-gray-200">
                             {siteContent.cases.quotes[1].p1}<span className="text-coral font-medium">{siteContent.cases.quotes[1].h1}</span>{siteContent.cases.quotes[1].p2}
                         </p>
                         <div className="flex items-center gap-4 mt-6">
-                            <img alt={siteContent.cases.quotes[1].author} className="w-12 h-12 rounded-full border border-white/20 object-cover" src="/images/avatar-2.jpg" />
+                            <img alt={siteContent.cases.quotes[1].author} className="w-12 h-12 rounded-full border border-white/20 object-cover" src={siteContent.cases.quotes[1].avatar} />
                             <div>
                                 <div className="text-white font-medium">{siteContent.cases.quotes[1].author}</div>
                                 <div className="text-gray-500 text-sm">{siteContent.cases.quotes[1].role}</div>
@@ -218,10 +219,8 @@ export default function Cases() {
 
                     <article className="project-card group relative bg-[#0F0F16] rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 shadow-2xl mt-8">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 cursor-pointer"></div>
-                        <div className="relative h-[480px] w-full overflow-hidden bg-gray-800">
-                            <div className="w-full h-full bg-gradient-to-br from-teal-900 to-emerald-900 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-700">
-                                <span className="text-9xl text-white/5 font-display font-bold">SAAS</span>
-                            </div>
+                        <div className="relative h-[480px] w-full overflow-hidden">
+                            <img alt={siteContent.cases.projects[2].title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src={siteContent.cases.projects[2].image} />
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 p-8 z-20 pointer-events-none">
                             <div className="flex justify-between items-end">
@@ -239,6 +238,21 @@ export default function Cases() {
                             </div>
                         </div>
                     </article>
+
+                    {/* Quote 3 */}
+                    <div className="quote-card bg-[#14141C]/70 backdrop-blur-[16px] border border-white/5 rounded-3xl p-8 relative ml-auto w-full md:w-[90%] transform translate-x-0 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]">
+                        <span className="absolute -top-4 -left-4 w-12 h-12 bg-coral-gradient rounded-full flex items-center justify-center text-white text-2xl font-serif">&quot;</span>
+                        <p className="text-xl md:text-2xl font-display font-light leading-relaxed text-gray-200">
+                            {siteContent.cases.quotes[2].p1}<span className="text-coral font-medium">{siteContent.cases.quotes[2].h1}</span>{siteContent.cases.quotes[2].p2}
+                        </p>
+                        <div className="flex items-center gap-4 mt-6">
+                            <img alt={siteContent.cases.quotes[2].author} className="w-12 h-12 rounded-full border border-white/20 object-cover" src={siteContent.cases.quotes[2].avatar} />
+                            <div>
+                                <div className="text-white font-medium">{siteContent.cases.quotes[2].author}</div>
+                                <div className="text-gray-500 text-sm">{siteContent.cases.quotes[2].role}</div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
