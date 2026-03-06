@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
+import Image from "next/image";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -67,8 +68,8 @@ export default function Manifesto() {
                     {siteContent.manifesto.title.p1} <span className="text-coral text-shadow-[0_0_30px_rgba(255,107,107,0.5)] font-light">{siteContent.manifesto.title.h1}</span> {siteContent.manifesto.title.p2}{" "}
                     {siteContent.manifesto.title.p3} <span className="text-magenta text-shadow-[0_0_30px_rgba(217,70,239,0.5)] font-light">{siteContent.manifesto.title.h2}</span>{" "}
                     <span className="relative inline-block">
-                        <div ref={imageRef} className="float-right ml-8 mt-4 md:mt-8 w-32 h-32 md:w-64 md:h-64 rounded-full glass-card p-1.5 rotate-3 hover:rotate-0 transition-transform duration-700 overflow-hidden hidden sm:block" style={{ shapeOutside: "circle(50%)", clipPath: "circle(50%)" }}>
-                            <img alt="Agencis Team" className="w-full h-full object-cover scale-110" src="/images/manifesto-team.jpg" />
+                        <div ref={imageRef} className="float-right ml-4 sm:ml-8 mt-2 sm:mt-4 md:mt-8 w-24 h-24 sm:w-32 sm:h-32 md:w-64 md:h-64 rounded-full glass-card p-1 sm:p-1.5 rotate-3 hover:rotate-0 transition-transform duration-700 overflow-hidden hidden sm:block" style={{ shapeOutside: "circle(50%)", clipPath: "circle(50%)" }}>
+                            <Image alt="Agencis Team" fill className="object-cover scale-110" src="/images/manifesto-team.jpg" />
                         </div>
                         {siteContent.manifesto.title.p4}
                     </span>

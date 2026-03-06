@@ -8,6 +8,7 @@ import HeroFeatureCard from "./HeroFeatureCard";
 import { siteContent } from "../data/content";
 import { Instagram, Linkedin, Facebook } from "lucide-react";
 import Magnetic from "./Magnetic";
+import Image from "next/image";
 
 gsap.registerPlugin(useGSAP);
 
@@ -22,6 +23,20 @@ export default function Hero() {
     const [activeSlide, setActiveSlide] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(true);
+    const [cardWidthMultiplier, setCardWidthMultiplier] = useState(280 + 24);
+
+    useEffect(() => {
+        const updateWidth = () => {
+            if (window.innerWidth < 640) {
+                setCardWidthMultiplier(240 + 24);
+            } else {
+                setCardWidthMultiplier(280 + 24);
+            }
+        };
+        updateWidth();
+        window.addEventListener('resize', updateWidth);
+        return () => window.removeEventListener('resize', updateWidth);
+    }, []);
 
     const handleNext = () => {
         setIsTransitioning(true);
@@ -123,11 +138,15 @@ export default function Hero() {
                     WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 30%, black 10%, transparent 85%)"
                 }}
             >
-                <img
-                    alt="3D Octopus Abstract Art"
-                    className={`absolute top-0 left-0 w-full h-full object-cover object-top transition-opacity duration-[2000ms] ease-in-out ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
-                    src="/images/abstract-octopus.png"
-                />
+                <div className={`absolute top-0 left-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}>
+                    <Image
+                        alt="3D Octopus Abstract Art"
+                        fill
+                        priority
+                        className="object-cover object-top"
+                        src="/images/abstract-octopus.png"
+                    />
+                </div>
                 <video
                     autoPlay
                     loop
@@ -141,8 +160,8 @@ export default function Hero() {
             </div>
 
             <div className="grid grid-cols-12 gap-6 relative z-10 w-full flex-grow">
-                <div ref={textRef} className="col-span-12 lg:col-span-5 relative z-10 flex flex-col justify-start pt-10">
-                    <h1 className="font-display font-thin-display text-6xl lg:text-[5rem] leading-[0.95] text-white tracking-tighter mb-4">
+                <div ref={textRef} className="col-span-12 lg:col-span-10 xl:col-span-5 relative z-10 flex flex-col justify-start pt-10">
+                    <h1 className="font-display font-thin-display text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] leading-[0.95] text-white tracking-tighter mb-6 lg:mb-4">
                         {siteContent.hero.title}
                     </h1>
                     <div className="mb-10 flex items-center gap-3">
@@ -151,7 +170,7 @@ export default function Hero() {
                             <span dangerouslySetInnerHTML={{ __html: siteContent.hero.badge }}></span>
                         </span>
                     </div>
-                    <div className="flex items-center gap-6 mb-20">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-16 lg:mb-20">
                         <div className="flex items-center gap-4">
                             <Magnetic>
                                 <a
@@ -197,7 +216,12 @@ export default function Hero() {
                     <div className="pointer-events-auto flex flex-col items-end gap-4 mt-20 lg:mt-32 mr-0 lg:mr-10">
                         <div className="glass-card rounded-[2rem] p-4 w-[280px] shadow-2xl relative mb-4 group cursor-pointer transition-all duration-300">
                             <div className="w-full h-32 bg-black rounded-2xl mb-4 overflow-hidden relative">
-                                <img className="absolute inset-0 w-full h-full object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100" src="/images/polvo_job.jpg" alt="Agencis Work" />
+                                <Image
+                                    fill
+                                    className="absolute inset-0 w-full h-full object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100"
+                                    src="/images/polvo_job.jpg"
+                                    alt="Agencis Work"
+                                />
                             </div>
                             <div className="text-center">
                                 <div className="text-3xl font-display text-coral font-light">
@@ -262,7 +286,7 @@ export default function Hero() {
                         </p>
                     </div>
                     <div className="max-w-2xl text-left lg:text-right">
-                        <h2 className="text-3xl lg:text-4xl font-display font-light leading-tight text-white">
+                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-light leading-snug text-white">
                             {siteContent.hero.description}
                         </h2>
                     </div>
@@ -295,7 +319,7 @@ export default function Hero() {
                         <div
                             className={`flex gap-6 ${isTransitioning ? 'transition-transform duration-700 ease-[cubic-bezier(0.8,0,0.2,1)]' : 'transition-none'}`}
                             style={{
-                                transform: `translateX(-${activeSlide * (280 + 24)}px)`,
+                                transform: `translateX(-${activeSlide * cardWidthMultiplier}px)`,
                                 pointerEvents: 'auto'
                             }}
                             onMouseEnter={() => setIsPaused(true)}

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
+import Image from "next/image";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -111,10 +112,16 @@ export default function Cases() {
                             </div>
                             <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                                 <div className="flex -space-x-3">
-                                    <img alt="Client Avatar" className="w-10 h-10 rounded-full border-2 border-white object-cover" src="/images/avatar-1.jpg" />
-                                    <img alt="Client Avatar" className="w-10 h-10 rounded-full border-2 border-white object-cover" src="/images/avatar-2.jpg" />
-                                    <img alt="Client Avatar" className="w-10 h-10 rounded-full border-2 border-white object-cover" src="/images/avatar-3.jpg" />
-                                    <div className="w-10 h-10 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-600">+42</div>
+                                    <div className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden">
+                                        <Image alt="Client Avatar" fill src="/images/avatar-1.jpg" className="object-cover" />
+                                    </div>
+                                    <div className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden">
+                                        <Image alt="Client Avatar" fill src="/images/avatar-2.jpg" className="object-cover" />
+                                    </div>
+                                    <div className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden">
+                                        <Image alt="Client Avatar" fill src="/images/avatar-3.jpg" className="object-cover" />
+                                    </div>
+                                    <div className="w-10 h-10 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-600 z-10">+42</div>
                                 </div>
                                 <div className="text-right">
                                     <div className="text-xs font-bold text-black uppercase tracking-wide">{siteContent.cases.reviewCard.ratingLabel}</div>
@@ -146,7 +153,13 @@ export default function Cases() {
                     <article className="project-card group relative bg-[#0F0F16] rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 shadow-2xl">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 cursor-pointer"></div>
                         <div className="relative h-[480px] w-full overflow-hidden">
-                            <img alt={siteContent.cases.projects[0].title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src={siteContent.cases.projects[0].image || "/images/fintech-data.png"} />
+                            <Image
+                                alt={siteContent.cases.projects[0].title}
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 60vw"
+                                className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                src={siteContent.cases.projects[0].image || "/images/fintech-data.png"}
+                            />
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 p-8 z-20 pointer-events-none">
                             <div className="flex justify-between items-end">
@@ -172,7 +185,9 @@ export default function Cases() {
                             {siteContent.cases.quotes[0].p1}<span className="text-magenta font-medium">{siteContent.cases.quotes[0].h1}</span>{siteContent.cases.quotes[0].p2}
                         </p>
                         <div className="flex items-center gap-4 mt-6">
-                            <img alt={siteContent.cases.quotes[0].author} className="w-12 h-12 rounded-full border border-white/20 object-cover" src={siteContent.cases.quotes[0].avatar} />
+                            <div className="relative w-12 h-12 rounded-full border border-white/20 overflow-hidden">
+                                <Image alt={siteContent.cases.quotes[0].author} fill src={siteContent.cases.quotes[0].avatar} className="object-cover" />
+                            </div>
                             <div>
                                 <div className="text-white font-medium">{siteContent.cases.quotes[0].author}</div>
                                 <div className="text-gray-500 text-sm">{siteContent.cases.quotes[0].role}</div>
@@ -183,7 +198,13 @@ export default function Cases() {
                     <article className="project-card group relative bg-[#0F0F16] rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 shadow-2xl mt-8">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 cursor-pointer"></div>
                         <div className="relative h-[480px] w-full overflow-hidden">
-                            <img alt={siteContent.cases.projects[1].title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src={siteContent.cases.projects[1].image} />
+                            <Image
+                                alt={siteContent.cases.projects[1].title}
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 60vw"
+                                className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                src={siteContent.cases.projects[1].image}
+                            />
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 p-8 z-20 pointer-events-none">
                             <div className="flex justify-between items-end">
@@ -209,7 +230,9 @@ export default function Cases() {
                             {siteContent.cases.quotes[1].p1}<span className="text-coral font-medium">{siteContent.cases.quotes[1].h1}</span>{siteContent.cases.quotes[1].p2}
                         </p>
                         <div className="flex items-center gap-4 mt-6">
-                            <img alt={siteContent.cases.quotes[1].author} className="w-12 h-12 rounded-full border border-white/20 object-cover" src={siteContent.cases.quotes[1].avatar} />
+                            <div className="relative w-12 h-12 rounded-full border border-white/20 overflow-hidden">
+                                <Image alt={siteContent.cases.quotes[1].author} fill src={siteContent.cases.quotes[1].avatar} className="object-cover" />
+                            </div>
                             <div>
                                 <div className="text-white font-medium">{siteContent.cases.quotes[1].author}</div>
                                 <div className="text-gray-500 text-sm">{siteContent.cases.quotes[1].role}</div>
@@ -220,7 +243,13 @@ export default function Cases() {
                     <article className="project-card group relative bg-[#0F0F16] rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 shadow-2xl mt-8">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 cursor-pointer"></div>
                         <div className="relative h-[480px] w-full overflow-hidden">
-                            <img alt={siteContent.cases.projects[2].title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src={siteContent.cases.projects[2].image} />
+                            <Image
+                                alt={siteContent.cases.projects[2].title}
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 60vw"
+                                className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                src={siteContent.cases.projects[2].image}
+                            />
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 p-8 z-20 pointer-events-none">
                             <div className="flex justify-between items-end">
@@ -246,7 +275,9 @@ export default function Cases() {
                             {siteContent.cases.quotes[2].p1}<span className="text-coral font-medium">{siteContent.cases.quotes[2].h1}</span>{siteContent.cases.quotes[2].p2}
                         </p>
                         <div className="flex items-center gap-4 mt-6">
-                            <img alt={siteContent.cases.quotes[2].author} className="w-12 h-12 rounded-full border border-white/20 object-cover" src={siteContent.cases.quotes[2].avatar} />
+                            <div className="relative w-12 h-12 rounded-full border border-white/20 overflow-hidden">
+                                <Image alt={siteContent.cases.quotes[2].author} fill src={siteContent.cases.quotes[2].avatar} className="object-cover" />
+                            </div>
                             <div>
                                 <div className="text-white font-medium">{siteContent.cases.quotes[2].author}</div>
                                 <div className="text-gray-500 text-sm">{siteContent.cases.quotes[2].role}</div>

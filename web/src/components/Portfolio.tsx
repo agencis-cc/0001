@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
+import Image from "next/image";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -69,8 +70,10 @@ export default function Portfolio() {
                     >
                         {siteContent.portfolioHighlights.items[2].image && (
                             <>
-                                <img
+                                <Image
                                     src={siteContent.portfolioHighlights.items[2].image}
+                                    fill
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
                                     className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-0 transition-opacity duration-700 ease-out group-hover:scale-110"
                                     alt="Background"
                                 />
@@ -129,8 +132,10 @@ export default function Portfolio() {
                     <article className="lg:col-span-1 lg:row-span-2 glass-card bg-white/[0.03] backdrop-blur-[20px] rounded-3xl border border-white/[0.06] p-8 flex flex-col justify-end relative group hover:-translate-y-1 hover:border-white/10 hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer">
                         {siteContent.portfolioHighlights.items[1].image && (
                             <>
-                                <img
+                                <Image
                                     src={siteContent.portfolioHighlights.items[1].image}
+                                    fill
+                                    sizes="(max-width: 1024px) 100vw, 25vw"
                                     className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:scale-110"
                                     alt="Background"
                                 />
@@ -155,8 +160,10 @@ export default function Portfolio() {
                     <article className="lg:col-span-1 lg:row-span-2 glass-card bg-white/[0.03] backdrop-blur-[20px] rounded-3xl border border-white/[0.06] p-8 flex flex-col justify-end relative group hover:-translate-y-1 hover:border-white/10 hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer">
                         {siteContent.portfolioHighlights.items[4].image && (
                             <>
-                                <img
+                                <Image
                                     src={siteContent.portfolioHighlights.items[4].image}
+                                    fill
+                                    sizes="(max-width: 1024px) 100vw, 25vw"
                                     className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:scale-110"
                                     alt="Background"
                                 />
@@ -181,8 +188,10 @@ export default function Portfolio() {
                     <div className="lg:col-span-2 lg:row-span-2 glass-card bg-white/[0.03] backdrop-blur-[20px] rounded-3xl border border-white/[0.06] p-10 md:p-12 flex flex-col justify-end relative overflow-hidden hover:-translate-y-1 transition-all duration-500 group cursor-pointer">
                         {siteContent.portfolioHighlights.items[3].image && (
                             <>
-                                <img
+                                <Image
                                     src={siteContent.portfolioHighlights.items[3].image}
+                                    fill
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
                                     className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:scale-110"
                                     alt="Background"
                                 />

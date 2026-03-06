@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
 import { Instagram, Linkedin, Facebook } from "lucide-react";
 import Magnetic from "./Magnetic";
+import Image from "next/image";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -59,9 +60,9 @@ export default function CtaFooter() {
             <section ref={ctaRef} className="max-w-[1440px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                     <div className="relative cta-title">
-                        <h2 className="font-display font-thin-display text-5xl lg:text-[6rem] leading-[0.9] text-white tracking-tighter">
+                        <h2 className="font-display font-thin-display text-4xl sm:text-5xl lg:text-[6rem] leading-[0.9] text-white tracking-tighter">
                             {siteContent.ctaFooter.cta.title.p1}<br />
-                            {siteContent.ctaFooter.cta.title.p2}<span className="align-top text-4xl lg:text-6xl text-gray-600 font-light">{siteContent.ctaFooter.cta.title.plus}</span>
+                            {siteContent.ctaFooter.cta.title.p2}<span className="align-top text-3xl lg:text-6xl text-gray-600 font-light">{siteContent.ctaFooter.cta.title.plus}</span>
                         </h2>
                         <div className="absolute -left-12 top-0 w-64 h-64 bg-purple-600/20 blur-[80px] rounded-full pointer-events-none"></div>
                     </div>
@@ -97,10 +98,16 @@ export default function CtaFooter() {
                                 <div className="bg-coral-gradient h-full w-[98%] rounded-full"></div>
                             </div>
                             <div className="mt-4 flex -space-x-2">
-                                <img alt="Client" className="w-8 h-8 rounded-full border border-black object-cover" src="/images/avatar-1.jpg" />
-                                <img alt="Client" className="w-8 h-8 rounded-full border border-black object-cover" src="/images/avatar-2.jpg" />
-                                <img alt="Client" className="w-8 h-8 rounded-full border border-black object-cover" src="/images/avatar-3.jpg" />
-                                <div className="w-8 h-8 rounded-full border border-black bg-white/10 flex items-center justify-center text-[10px] text-white backdrop-blur-sm">
+                                <div className="relative w-8 h-8 rounded-full border border-black overflow-hidden">
+                                    <Image alt="Client" fill src="/images/avatar-1.jpg" className="object-cover" />
+                                </div>
+                                <div className="relative w-8 h-8 rounded-full border border-black overflow-hidden">
+                                    <Image alt="Client" fill src="/images/avatar-2.jpg" className="object-cover" />
+                                </div>
+                                <div className="relative w-8 h-8 rounded-full border border-black overflow-hidden">
+                                    <Image alt="Client" fill src="/images/avatar-3.jpg" className="object-cover" />
+                                </div>
+                                <div className="w-8 h-8 rounded-full border border-black bg-white/10 flex items-center justify-center text-[10px] text-white backdrop-blur-sm z-10">
                                     {siteContent.ctaFooter.cta.stats.avatarsLabel}
                                 </div>
                             </div>
